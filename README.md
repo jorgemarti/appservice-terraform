@@ -46,7 +46,7 @@ git clone https://\$appservicetf-14235301366062598665:GPkYlcxE5bh30zjo8p5jEmdtiX
 ```
 ### Copy the Sample App contents
 
-In the link below you can find a sample example for **.Net Core running on Azure Webapp service**, which has been modified to make use on the _Connection String_ defined in this project.
+In the link below you can find a sample example for **.Net Core running on Azure Webapp service**, which has been modified to make use on the _Connection String_ defined in this project. (original code is [here](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)).
 
 https://github.com/jorgemarti/dotnetcore-sqldb-tutorial/archive/master.zip
 
