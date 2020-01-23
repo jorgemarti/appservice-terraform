@@ -5,15 +5,6 @@
 
 resources:
 - repo: self
-trigger:
-  branches:
-    include:
-    - master
-  # paths:
-  #   exclude:
-  #   - k8s-terraform/*
-  #   - img/*
-  #   - k8s-tf2/*
 
 stages:
 - stage: Validate
@@ -21,17 +12,17 @@ stages:
   - job: Validate
     continueOnError: false
     steps:
-    - publish: appservice-terraform
+    - publish: .
       artifact: terraform_out
     - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
-      displayName: 'Use Terraform v0.12.16'
+      displayName: 'Use Terraform v0.12.18'
       inputs:
-        terraformVersion: 0.12.16
+        terraformVersion: 0.12.18
     - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
       displayName: 'terraform init'
       inputs:
         command: init
-        workingDirectory: appservice-terraform
+
         backendType: azurerm
         backendServiceArm: 'AksTerraformSPN'
         backendAzureRmResourceGroupName: 'AksPrerreq-RG'
@@ -42,4 +33,3 @@ stages:
       displayName: 'terraform validate'
       inputs:
         command: validate
-        workingDirectory: appservice-terraform
