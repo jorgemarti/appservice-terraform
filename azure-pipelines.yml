@@ -11,6 +11,8 @@ stages:
   jobs:
   - job: Validate
     continueOnError: false
+    variables:
+    - group: configurations
     steps:
     - publish: .
       artifact: terraform_out
@@ -22,9 +24,8 @@ stages:
       displayName: 'terraform init'
       inputs:
         command: init
-
         backendType: azurerm
-        backendServiceArm: 'AksTerraformSPN'
+        backendServiceArm: '$(azurespn)'
         backendAzureRmResourceGroupName: 'AksPrerreq-RG'
         backendAzureRmStorageAccountName: 'jorgemartiterraform'
         backendAzureRmContainerName: 'tfstate'

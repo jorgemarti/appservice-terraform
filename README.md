@@ -9,17 +9,23 @@ The following Azure resources will be created by this project:
 
 ## Prerequisites
 
+### Azure prerequisites
 To correctly maintain the state of our Terraform deployment we will require a few resources upfront:
 
   * A storage account to act as a backend for Terraform.
 
-### Initiate the Azure provider
+## Deploying resources
+
+
+
+### Run Terraform manually
+
+Initiate the Azure provider:
 
 ```bash
 terraform init -backend-config="resource_group_name=AksPrerreq-RG" -backend-config="storage_account_name=jorgemartiterraform" -backend-config="container_name=tfstate"
 ```
-
-## Run Terraform
+Then run terraform:
 
 ```
 terraform validate
@@ -28,6 +34,27 @@ terraform apply
 
 Output will show the credentials to connect to the Local Git generated for this Appservice, as well as the URL to correctly access the application.
 
+### Deploying resources using Azure DevOps pipeline
+
+In case we want to deploy these resources in a CI/CD pipeline in Azure Devops, we have two additional prerequisites:
+
+1. **Service Connection to Azure**
+
+A *Service Connection* (or service *endpoint*) stores the credentials used in the pipeline to create Azure resources, which have some credentials with permissions on Azure (a _Service Principal_). The name of the service principal will be passed to the pipeline as a *group variable* in the Library.
+
+![](img/README2020-02-26-12-25-34.png)
+
+A service connection for Azure looks as the following one:
+
+![](img/README2020-02-26-12-28-28.png)
+
+2. **Group variable**
+
+The `azure-pipelines.yml` definition has been configured to make use of a **Variable group** from the pipeline library, named `configurations`, which must include a variable named `azurespn`
+
+![](img/README2020-02-26-12-19-00.png)
+
+Once these two resources have been properly configured in the Azure DevOps project, we can run the pipeline and the resources will be automatically created.
 
 ## Limitations
 
