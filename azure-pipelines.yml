@@ -58,6 +58,7 @@ stages:
             displayName: 'terraform init'
             inputs:
               command: init
+              workingDirectory: $(Pipeline.Workspace)/terraform_out
               backendType: azurerm
               backendServiceArm: '$(azurespn)'
               backendAzureRmResourceGroupName: 'AksPrerreq-RG'
@@ -68,6 +69,7 @@ stages:
             displayName: 'terraform plan'
             inputs:
               command: plan
+              workingDirectory: $(Pipeline.Workspace)/terraform_out
               environmentServiceName: '$(azurespn)'
               commandOptions: '-out $(Pipeline.Workspace)/terraform_out/terraform_appservice_out'
               terraformVersion: 0.12.18
