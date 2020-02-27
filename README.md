@@ -97,7 +97,7 @@ git push
 
 The Azure Appservice will provide an exit similar to this one:
 
-```bash
+```
 Counting objects: 91, done.
 Delta compression using up to 8 threads.
 Compressing objects: 100% (87/87), done.
