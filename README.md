@@ -12,18 +12,26 @@ The following Azure resources will be created by this project:
 ### Azure prerequisites
 To correctly maintain the state of our Terraform deployment we will require a few resources upfront:
 
-  * A storage account to act as a backend for Terraform.
+  * A **resource group**: Can be a dedicated one for Terraform prerequisites (for instance `terraform-prereq-RG`) used by other projects, or the same resource group where this projec's resources will be deployed.
+  * A **container** inside a **storage account** to act as a *backend* for Terraform.
+
+These resources can be created from console:
+
+```bash
+# Create storage account
+az storage account create -n terraform-prereq-SA -g terraform-prereq-RG -l westeurope
+# Create container
+az storage container create -n tfstate --account-name terraform-prereq-SA
+```
 
 ## Deploying resources
-
-
 
 ### Run Terraform manually
 
 Initiate the Azure provider:
 
 ```bash
-terraform init -backend-config="resource_group_name=AksPrerreq-RG" -backend-config="storage_account_name=jorgemartiterraform" -backend-config="container_name=tfstate"
+terraform init -backend-config="resource_group_name=terraform-prereq-RG" -backend-config="storage_account_name=terraform-prereq-SA" -backend-config="container_name=tfstate"
 ```
 Then run terraform:
 
