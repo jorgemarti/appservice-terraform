@@ -47,7 +47,7 @@ Output will show the credentials to connect to the Local Git generated for this 
 
 In case we want to deploy these resources in a CI/CD pipeline in Azure Devops, we have two additional prerequisites:
 
-1. **Service Connection to Azure**
+#### 1. Service Connection to Azure
 
 A *Service Connection* (or service *endpoint*) stores the credentials used in the pipeline to create Azure resources, which have some credentials with permissions on Azure (a _Service Principal_). The name of the service principal will be passed to the pipeline as a *group variable* in the Library.
 
@@ -57,7 +57,7 @@ A service connection for Azure looks as the following one:
 
 ![](img/README2020-02-26-12-28-28.png)
 
-2. **Group variable**
+#### 2. Group variable
 
 The `azure-pipelines.yml` definition has been configured to make use of a **Variable group** from the pipeline library, named `configurations`, which must include a variable named `azurespn`
 
@@ -97,7 +97,7 @@ git push
 
 The Azure Appservice will provide an exit similar to this one:
 
-```
+```bash
 Counting objects: 91, done.
 Delta compression using up to 8 threads.
 Compressing objects: 100% (87/87), done.
