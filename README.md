@@ -10,9 +10,10 @@ The following Azure resources will be created by this project:
 ## Prerequisites
 
 ### Azure prerequisites
-To correctly maintain the state of our Terraform deployment we will require a few resources upfront:
 
-  * A **resource group**: Can be a dedicated one for Terraform prerequisites (for instance `terraform-prereq-RG`) used by other projects, or the same resource group where this projec's resources will be deployed.
+Apart from the obvious *Azure subscription* and *resource group* necessary to deploy the resources specified in this project, we will require some additional resources upfront to correctly maintain the state of our Terraform deployment:
+
+  * A **resource group**: Can be a dedicated one for Terraform prerequisites (for instance `terraform-prereq-RG`) used by other projects, or the same resource group where this project's resources will be deployed.
   * A **container** inside a **storage account** to act as a *backend* for Terraform.
 
 These resources can be created from console:
