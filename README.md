@@ -20,9 +20,9 @@ These resources can be created from console:
 
 ```bash
 # Create storage account
-az storage account create -n terraform-prereq-SA -g terraform-prereq-RG -l westeurope
+az storage account create -n terraformprereqsa -g terraform-prereq-RG -l westeurope
 # Create container
-az storage container create -n tfstate --account-name terraform-prereq-SA
+az storage container create -n tfstate --account-name terraformprereqsa
 ```
 
 ## Deploying resources
@@ -32,7 +32,7 @@ az storage container create -n tfstate --account-name terraform-prereq-SA
 Initiate the Azure provider:
 
 ```bash
-terraform init -backend-config="resource_group_name=terraform-prereq-RG" -backend-config="storage_account_name=terraform-prereq-SA" -backend-config="container_name=tfstate"
+terraform init -backend-config="resource_group_name=terraform-prereq-RG" -backend-config="storage_account_name=terraformprereqsa" -backend-config="container_name=tfstate"
 ```
 Then run terraform:
 
